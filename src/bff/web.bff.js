@@ -1,9 +1,9 @@
-import { v4 as uuidv4 } from 'uuid';
+import crypto from "crypto";
 import jwt from 'jsonwebtoken';
 import redis from '../caching/cache.js'
 
 export async function createSession(id) {
-    const sessionId = uuidv4()
+    const sessionId = crypto.randomBytes(32).toString("hex")
 
     const sessionToken = jwt.sign({
         sessionId
